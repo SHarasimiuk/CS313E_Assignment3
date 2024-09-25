@@ -101,7 +101,6 @@ def color_word(colors, word):
     return "".join(colored_word)
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def prepare_game():
     """
     Prepares the game by reading in the valid words and secret words and
@@ -144,7 +143,6 @@ def prepare_game():
     return secret_word, valid_words
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def is_valid_guess(guess, valid_guesses):
     """
     Checks if a given guess is valid.
@@ -159,7 +157,6 @@ def is_valid_guess(guess, valid_guesses):
     return guess in valid_guesses and len(guess) == 5
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def get_feedback(secret_word, guessed_word):
     """
     Processes the guess and generates the colored feedback based on the secret
@@ -179,15 +176,20 @@ def get_feedback(secret_word, guessed_word):
     """
     feedback = [None] * NUM_LETTERS
     secret_list = list(secret_word)
+    guessed_list = list(guessed_word)
 
     # Modify this! This is just starter code.
     for i in range(NUM_LETTERS):
-        if guessed_word[i] == secret_list[i]:
+        if guessed_list[i] == secret_list[i]:
             feedback[i] = CORRECT_COLOR
             secret_list[i] = "-"
-        elif guessed_word[i] in secret_list:
+            guessed_list[i] = "-"
+
+    for i in range(NUM_LETTERS):
+        if guessed_list[i] in secret_list and guessed_list[i] != "-":
             feedback[i] = WRONG_SPOT_COLOR
-        else:
+            secret_list[secret_list.index(guessed_list[i])] = "-"
+        elif guessed_list[i] not in secret_list:
             feedback[i] = NOT_IN_WORD_COLOR
 
     # You do not have to change this return statement
