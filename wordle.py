@@ -129,6 +129,7 @@ def prepare_game():
     if len(sys.argv) == 2:
         if sys.argv[1].isalpha() and len(sys.argv[1]) == 5 and sys.argv[1].islower():
             secret_word = sys.argv[1]
+            valid_words.append(sys.argv[1])
         elif sys.argv[1].isdigit():
             random.seed(int(sys.argv[1]))
             secret_word = random.choice(secret_words)
